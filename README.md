@@ -33,16 +33,16 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ create templates for added actions
 	+ push to heroku
 
-4. Add User resouce, use devise
+4. Add User resouce
 	+ generate user and migrate
 	+ write tests for user creation
 
-5. Add order resource
-	- generate
-	- add associacion to both user and book
-	- add type open/closed
-	- migrate
-	- write tests
+5. Add order model
+	+ generate
+	+ add associacion to both user and book
+	+ add status open/closed
+	+ migrate
+	+ write tests
 	- push to heroku
 
 6. Make button for lending a book
