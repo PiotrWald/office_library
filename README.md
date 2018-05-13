@@ -51,7 +51,11 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ add button that creates an order for the book in order controller
 
 8. Only logged in users can do stuff
+	+ default
 
 9. Frontend
-	- prityfiy
+	- prettify with bootstrap
 
+10. Add error handling
+
+11. Refactor the code

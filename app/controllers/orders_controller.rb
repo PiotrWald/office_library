@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     		book.save
     		make_order(book)
     	else
-    		redirect_to book, notice: 'Not enugh copes of this book'
+    		redirect_to book, notice: 'Not enugh copies of this book'
     	end
 	end
 
