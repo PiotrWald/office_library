@@ -34,9 +34,8 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ push to heroku
 
 4. Add User resouce, use devise
-	- install devise
-	- generate user and migrate
-	- write tests for user creation
+	+ generate user and migrate
+	+ write tests for user creation
 
 5. Add order resource
 	- generate
