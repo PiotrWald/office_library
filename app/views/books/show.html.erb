@@ -10,5 +10,45 @@
   <%= @book.description %>
 </p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<p>
+  <strong>Number of copies available:</strong>
+  <%= @book.number_of_copies %>
+</p>
+
+<% unless current_user.nil? %>
+
+	<%= link_to 'Edit', edit_book_path(@book) %>
+	<%= link_to 'Back', books_path %>
+	<%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+  <%= form_for @order, url: { controller: "orders", action: "create" } do |f| %>
+    <%= f.hidden_field :book_id, value: @book.id %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
+<p><strong>Current Orders</strong></p>
+
+<ul>
+  <% @orders.each do |order| %>
+    <% if order.open? %>
+      <li>
+        <%= render order, locals: { order: order }%>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<p><strong>History</strong></p>
+
+<ul>
+  <% @orders.each do |order| %>
+    <% if order.closed? %>
+      <li>
+        <%= render order, locals: { order: order }%>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+

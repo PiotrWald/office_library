@@ -43,14 +43,12 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ add status open/closed
 	+ migrate
 	+ write tests
-	- push to heroku
+	+ push to heroku
 
 6. Make button for lending a book
-	- add orders to be displayed under the book
-	- create order create action in order conroller
-	- add button that creates an order for the book in order controller
-
-7. Add google log in feature
+	+ add orders to be displayed under the book if open
+	+ create order create action in order conroller
+	+ add button that creates an order for the book in order controller
 
 8. Only logged in users can do stuff
 

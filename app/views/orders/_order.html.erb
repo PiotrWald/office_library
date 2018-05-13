@@ -1,0 +1,5 @@
+<p>
+	<%= "ordered by #{order.user.name} on #{order.created_at}" %>
+	<%= link_to 'Return', edit_order_path(order) if
+	 current_user.id == order.user.id && order.open? %>
+</p>
