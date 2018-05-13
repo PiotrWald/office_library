@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
 	has_many :orders
 	
-	validates :title, presence: true
+	validates_presence_of :title, :number_of_copies
 end
