@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+<h3>
+  <strong><%= @book.title %></strong>
+</h3>
 
-<p>
-  <strong>Description:</strong>
-  <%= @book.description %>
-</p>
+  <%= form_for @order, url: { controller: "orders", action: "create" } do |f| %>
+    <%= f.hidden_field :book_id, value: @book.id %>
+    <%= f.submit "Borrow This Book", class: "btn btn-success"%>
+  <% end %>
+
+<div class="panel panel-default">
+  <div class="panel-body"><%= @book.description %></div>
+</div>
 
 <p>
   <strong>Number of copies available:</strong>
@@ -17,14 +20,8 @@
 
 <% unless current_user.nil? %>
 
-	<%= link_to 'Edit', edit_book_path(@book) %>
-	<%= link_to 'Back', books_path %>
-	<%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-  <%= form_for @order, url: { controller: "orders", action: "create" } do |f| %>
-    <%= f.hidden_field :book_id, value: @book.id %>
-    <%= f.submit %>
-  <% end %>
+	<%= link_to 'Edit', edit_book_path(@book), class: "btn btn-info" %>
+	<%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning"%>
 <% end %>
 
 <p><strong>Current Orders</strong></p>

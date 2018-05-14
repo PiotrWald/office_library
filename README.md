@@ -54,7 +54,16 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ default
 
 9. Frontend
-	- prettify with bootstrap
+	+ add bootstrap-rails to the project
+	+ add striped table for the book list
+	+ add navbar at the top
+	- make workable layout of books#show
+	- add button for adding new books
+	- improve look of the new/update view
+	- final polish
+
+10. Make seeds to populate databse
+	+ make book seeds
 
 10. Add error handling
 

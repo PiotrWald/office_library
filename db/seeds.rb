@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+20.times do |f|
+	Book.create(
+		title: "Book Title #{f}",
+		description: "description nr #{f}",
+		number_of_copies: rand(f)
+	)
+end
+
+puts 'Created 20 books...'
