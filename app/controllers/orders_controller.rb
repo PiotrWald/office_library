@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
-	before_action :check_permission
 	def create
 		book = Book.find(order_params[:book_id])
 		if (book.number_of_copies -= 1) >= 0
-    		book.save
-    		make_order(book)
+            Order.transaction do
+        		book.save
+        		make_order(book)
+            end
     	else
-    		redirect_to book, notice: 'Not enugh copies of this book'
+    		redirect_to book, notice: 'Not enough copies of this book'
     	end
 	end
 
@@ -14,11 +15,14 @@ class OrdersController < ApplicationController
     	@order = Order.find(params[:id])
     	@order.status = :closed
 
-    	book = @order.book
-    	book.number_of_copies += 1
-    	book.save
+        ok = @order.transaction do
+                	book = @order.book
+                	book.number_of_copies += 1
+                	book.save
+                    @order.save
+                end
 
-    	if @order.save
+    	if ok
     		redirect_to @order.book, notice:
     		"You have succesfully returned #{ @order.book.title }"
     	end
@@ -35,12 +39,6 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:book_id)
     end
 
-    def check_permission
-    	if current_user.nil?
-    		redirect_to root_path, notice: 'You cannot do that'
-    	end
-    end
-
     def make_order book
     	if Order.create(
 			user_id: current_user.id,
@@ -48,8 +46,6 @@ class OrdersController < ApplicationController
 			status: :open
 		)
 			redirect_to book, notice: "You have succesfully borrowed #{book.title}!"
-		else
-			redirect_to books_path 'Your request can not be processed during this time'
 		end
 	end
 end

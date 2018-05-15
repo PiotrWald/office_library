@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe BooksController, type: :controller do
   let(:valid_attributes) {{
     title: 'Lord of the Rings',
-    description: 'History of brave Hobbits and the ring'
+    description: 'History of brave Hobbits and the ring',
+    number_of_copies: 1
   }}
 
   let(:invalid_attributes) {{
@@ -72,13 +73,6 @@ RSpec.describe BooksController, type: :controller do
         title: 'Game of Thrones',
         desription: 'Dragons!'
       }}
-
-      # it "updates the requested book" do
-      #   book = Book.create! valid_attributes
-      #   put :update, params: {id: book.to_param, book: new_attributes}, session: valid_session
-      #   book.reload
-      #   expect(response.content).to redirect_to(book)
-      # end
 
       it "redirects to the book" do
         book = Book.create! valid_attributes

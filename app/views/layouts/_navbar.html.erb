@@ -5,9 +5,11 @@
         <li class="nav-item">
           <a class="nav-link" href="<%= books_path %>">Home</a>
         </li> 
-        <li class="nav-item">
-          <a class="nav-link disabled" href="<%= orders_path %>">History</a>
-        </li>
+        <% if current_user %>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="<%= orders_path %>">History</a>
+          </li>
+        <% end %>
         <li class="nav-item">
           <%= render 'layouts/google.html.erb' %>
         </li>

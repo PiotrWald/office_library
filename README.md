@@ -66,8 +66,11 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ make book seeds
 
 11. Add error handling
+	- not implemented
 
 12. Refactor the code
+	- add transactions where necassary
+	- split code from layouts into partials
 
 13. Add history feature
 	+ add controller action order#index
@@ -75,13 +78,4 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ make view look semi-deecent
 
 14. Decrease number of active record queries
-
-
-    <% if ord = @orders.where(status: :open).count != 0 %>
-      <%= form_for @order, url: { controller: "orders", action: "edit" } do |f| %>
-      <%= f.hidden_field :id, value: ord.first.id %>
-      <%= f.submit "Return This Book", class: "btn btn-success btn-lg"%>
-    <% end %>
-	    <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-info btn-lg" %> 
-	    <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-lg", style: ""%>
-  <% end %>
+	- not implemented
