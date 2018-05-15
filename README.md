@@ -59,8 +59,8 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ add navbar at the top
 	+ make workable layout of books#show
 	+ add button for adding new books
-	- improve look of the new/update view
-	- final polish
+	+ improve look of the new/update view
+	+ final polish
 
 10. Make seeds to populate databse
 	+ make book seeds
@@ -69,8 +69,8 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	- not implemented
 
 12. Refactor the code
-	- add transactions where necassary
-	- split code from layouts into partials
+	+ add transactions where necassary
+	+ split code from layouts into partials
 
 13. Add history feature
 	+ add controller action order#index
