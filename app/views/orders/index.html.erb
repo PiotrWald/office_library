@@ -1,0 +1,21 @@
+<h2>History of Your Orders</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Book Ttile</th>
+      <th scope="col">Borrowed At</th>
+      <th scope="col">Returnd At</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr scope="row"> 
+        <td><%= order.book.title%></td>
+        <td><%= order.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= order.updated_at.strftime("%B %d, %Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

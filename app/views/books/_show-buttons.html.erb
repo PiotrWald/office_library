@@ -1,0 +1,19 @@
+<div class="container-fluid" style="display: flex;">
+  <% unless current_user.nil? %>
+
+    <% if @orders.where(status: :open).count == 0 %>
+      <%= form_for @order, url: { controller: "orders", action: "create" } do |f| %>
+	      <%= f.hidden_field :book_id, value: @book.id %>
+	      <%= f.submit "Borrow This Book", class: "btn btn-success btn-lg b-c"%>
+	    <% end %>
+    <% end %>
+
+    <% if (ord = @orders.where(status: :open)).count != 0 %>
+	      <%= link_to 'Return This Book', edit_order_path(ord.first), class: "btn btn-success btn-lg b-c"%>
+    <% end %>
+
+
+    <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-info btn-lg" %> 
+    <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-lg b-c", style: ""%>
+    <% end %>
+</div>

@@ -1,7 +1,3 @@
 <p>
-	<%= "ordered by #{order.user.name} on #{order.created_at}" %>
-	<%= link_to 'Return', edit_order_path(order) if
-		!current_user.nil? &&
-		current_user.id == order.user.id &&
-		order.open? %>
+	<%= "ordered by #{order.user.name} on #{order.created_at.strftime("%B %d, %Y")}" %>
 </p>

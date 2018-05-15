@@ -57,14 +57,31 @@ Zadanie: zrobienie biblioteczki firmowej, w ramach której możliwe jest:
 	+ add bootstrap-rails to the project
 	+ add striped table for the book list
 	+ add navbar at the top
-	- make workable layout of books#show
-	- add button for adding new books
+	+ make workable layout of books#show
+	+ add button for adding new books
 	- improve look of the new/update view
 	- final polish
 
 10. Make seeds to populate databse
 	+ make book seeds
 
-10. Add error handling
+11. Add error handling
 
-11. Refactor the code
+12. Refactor the code
+
+13. Add history feature
+	+ add controller action order#index
+	+ create a view
+	+ make view look semi-deecent
+
+14. Decrease number of active record queries
+
+
+    <% if ord = @orders.where(status: :open).count != 0 %>
+      <%= form_for @order, url: { controller: "orders", action: "edit" } do |f| %>
+      <%= f.hidden_field :id, value: ord.first.id %>
+      <%= f.submit "Return This Book", class: "btn btn-success btn-lg"%>
+    <% end %>
+	    <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-info btn-lg" %> 
+	    <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-lg", style: ""%>
+  <% end %>

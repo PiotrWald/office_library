@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   resources :books
-  resources :orders, only: [:edit]
+  resources :orders, only: [:edit, :index]
 
   root 'books#index'
 end

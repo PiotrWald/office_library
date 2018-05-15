@@ -1,51 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h3>
+<h2>
   <strong><%= @book.title %></strong>
-</h3>
-
-  <%= form_for @order, url: { controller: "orders", action: "create" } do |f| %>
-    <%= f.hidden_field :book_id, value: @book.id %>
-    <%= f.submit "Borrow This Book", class: "btn btn-success"%>
-  <% end %>
+</h2>
 
 <div class="panel panel-default">
   <div class="panel-body"><%= @book.description %></div>
 </div>
 
-<p>
-  <strong>Number of copies available:</strong>
-  <%= @book.number_of_copies %>
-</p>
-
 <% unless current_user.nil? %>
-
-	<%= link_to 'Edit', edit_book_path(@book), class: "btn btn-info" %>
-	<%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning"%>
+  <%= render 'books/show-buttons'%>
 <% end %>
 
-<p><strong>Current Orders</strong></p>
+<h4>
+  Number of copies available:
+  <%= @book.number_of_copies %>
+</h4>
+<br>
 
-<ul>
-  <% @orders.each do |order| %>
-    <% if order.open? %>
-      <li>
-        <%= render order, locals: { order: order }%>
-      </li>
+  <h3 style="margin-left: 4rem;">Your Past Orders</h3>
+
+  <ul class="list-group-flush">
+    <% @orders.each do |order| %>
+      <% if order.closed? %>
+        <li class="list-group-item">
+          <%= render order, locals: { order: order }%>
+        </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
-
-<p><strong>History</strong></p>
-
-<ul>
-  <% @orders.each do |order| %>
-    <% if order.closed? %>
-      <li>
-        <%= render order, locals: { order: order }%>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+  </ul>
 
 
