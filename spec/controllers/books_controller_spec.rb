@@ -71,21 +71,14 @@ RSpec.describe BooksController, type: :controller do
     context "with valid params" do
       let(:new_attributes) {{
         title: 'Game of Thrones',
-        desription: 'Dragons!'
+        desription: 'Dragons!',
+        number_of_copies: 2
       }}
 
       it "redirects to the book" do
         book = Book.create! valid_attributes
         put :update, params: {id: book.to_param, book: valid_attributes}, session: valid_session
         expect(response).to redirect_to(book)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a successful response (i.e. to display the 'edit' template)" do
-        book = Book.create! valid_attributes
-        put :update, params: {id: book.to_param, book: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
       end
     end
   end

@@ -31,7 +31,7 @@ class BooksController < ApplicationController
     if @book.update(book_params)
       redirect_to @book
     else
-      redirect_to update_book_path(@book)
+      redirect_to edit_book_path(@book)
     end
   end
 
