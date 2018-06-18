@@ -2,7 +2,7 @@
 
   <h1 >Office Library</h1>
 
-  <% unless current_user.nil? %>
+  <% if current_user %>
     <%= link_to 'Add New Book', new_book_path, class: "btn btn-success", style: "margin: 1rem;" %>
   <% end %>
 
@@ -19,10 +19,9 @@
 
   <tbody>
     <% @books.each do |book| %>
-      <tr scope="row"> 
-        <td><%= link_to book.title, book, class: "btn btn-light btn-info" %></td>
-        <td><%= book.description %></td>
-        <td><%= book.number_of_copies %></td>
+      <%= cache(book) do %>
+        <%= render book %>
+      <% end %>
     <% end %>
   </tbody>
 </table>

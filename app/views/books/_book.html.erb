@@ -1,0 +1,4 @@
+<tr scope="row"> 
+  <td><%= link_to book.title, book, class: "btn btn-light btn-info", style: "width: 15rem;"%></td>
+  <td><%= book.description.truncate(20) %></td>
+  <td><%= book.number_of_copies %></td>

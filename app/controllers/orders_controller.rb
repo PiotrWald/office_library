@@ -1,37 +1,31 @@
 class OrdersController < ApplicationController
+    before_action :get_order_manager
+
 	def create
 		book = Book.find(order_params[:book_id])
-		if (book.number_of_copies -= 1) >= 0
-            Order.transaction do
-        		book.save
-        		make_order(book)
-            end
+
+      if @order_manager.make_order(book)
+        redirect_to book, notice: "You have succesfully borrowed #{book.title}!"
     	else
-    		redirect_to book, notice: 'Not enough copies of this book'
+    		redirect_to book, alert: 'Not enough copies of this book'
     	end
 	end
 
-	 def edit
-    	@order = Order.find(params[:id])
-    	@order.status = :closed
+	def edit
+    @order = Order.find(params[:id])
 
-        ok = @order.transaction do
-                	book = @order.book
-                	book.number_of_copies += 1
-                	book.save
-                    @order.save
-                end
+    if @order_manager.return_order(@order)
+    	flash.notice = "You have succesfully returned #{ @order.book.title }"
+    else 
+      flash.alert = "Oops something went wrong"
+    end
 
-    	if ok
-    		redirect_to @order.book, notice:
-    		"You have succesfully returned #{ @order.book.title }"
-    	end
+    redirect_to @order.book
     end
 
     def index
         @orders = Order.where(user_id: current_user.id)
     end
-
 
 	private
 
@@ -39,13 +33,7 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:book_id)
     end
 
-    def make_order book
-    	if Order.create(
-			user_id: current_user.id,
-			book_id: book.id,
-			status: :open
-		)
-			redirect_to book, notice: "You have succesfully borrowed #{book.title}!"
-		end
-	end
+    def get_order_manager
+        @order_manager = OrderManagerService.new(current_user)
+    end
 end
